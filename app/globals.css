@@ -24,3 +24,32 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+h1 {
+  font-size:xx-large;
+  color: #4baf08;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#home {
+  font-size:15px;
+  color: #03a3af;
+  font-family:;
+  text-align: center;
+}
+#about {
+  font-size:15px;
+  color: #af2503;
+  font-family:;
+  text-align: center;
+}
+#service {
+  font-size:15px;
+  color: #af03a1;
+  font-family:;
+  text-align: center;
+}
+#contact {
+  font-size:15px;
+  color: #af8f03;
+  font-family:;
+  text-align: center;
+}
