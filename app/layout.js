@@ -3,6 +3,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Prompt } from 'next/font/google';
 import "./globals.css";
 import Navigation from "./components/Navigation";
+import ThemeToggle from './components/ThemeToggle';
 
 
 const prompt = Prompt({
@@ -20,8 +21,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="th">
       <body>
-        <Navigation />
-        {children}
+        <div className="navbar">
+          <Navigation />
+          <ThemeToggle />
+        </div>
+        <main style={{ padding: '2rem', textAlign: 'center' }}>
+          {children}
+        </main>
       </body>
     </html>
   );
