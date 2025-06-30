@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Prompt } from 'next/font/google';
 import "./globals.css";
-import Navigation from "./conponents/Navigation";
+import Navigation from "./components/Navigation";
 
 
 const prompt = Prompt({
@@ -16,14 +16,12 @@ export const metadata = {
 };
 
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="th">
-      <body
-       className={prompt.className}
-      ><Navigation/>
+      <body>
+        <Navigation />
         {children}
-       
       </body>
     </html>
   );
