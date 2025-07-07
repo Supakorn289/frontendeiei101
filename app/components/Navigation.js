@@ -22,8 +22,10 @@ export default function Navbar() {
             บริการของเรา
           </Link>
           <ul className="dropdown-menu">
-            <li><Link className="dropdown-item" href="#">Action</Link></li>
-            <li><Link className="dropdown-item" href="#">Another action</Link></li>
+            <li><Link className="dropdown-item" href="https://getbootstrap.com/">Bootstrap</Link></li>
+            <li><Link className="dropdown-item" href="https://github.com/">Github</Link></li>
+            <li><Link className="dropdown-item" href="https://vercel.com/">Vercel</Link></li>
+            <li><Link className="dropdown-item" href="https://www.figma.com/">Figma</Link></li>
             <li><hr className="dropdown-divider" /></li>
             <li><Link className="dropdown-item" href="#">Something else here</Link></li>
           </ul>

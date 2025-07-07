@@ -8,7 +8,7 @@ export default function Footer() {
             <ul className="nav flex-column">
        
               <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-body-secondary">
+                <a href="/" className="nav-link p-0 text-body-secondary">
                   Home
                 </a>
               </li>
