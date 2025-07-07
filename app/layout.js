@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Prompt } from 'next/font/google';
 import Navigation from "./components/Navigation";
+import Footer from './components/Footer';
 
 
 const prompt = Prompt({
@@ -18,13 +19,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="th">
-      <body>
-        <div className="navbar">
-          <Navigation />
-        </div>
-        <main style={{ padding: '2rem', textAlign: 'center' }}>
-          {children}
-        </main>
+      <body className={prompt.className}>
+        <Navigation/>
+        {children}
+        <Footer/>
       </body>
     </html>
   );
