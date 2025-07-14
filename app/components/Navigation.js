@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
 <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid">
-  <Link href="/" className="navbar-brand d-flex align-items-center gap-2"><img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width={30} height={24} className="d-inline-block align-text-top" /> FrontEnd</Link>
+  <Link href="/" className="navbar-brand d-flex align-items-center gap-2"><img src="https://it.cmtc.ac.th/wp-content/uploads/2024/07/cropped-logo_header_itcmtc2024.png" alt="Logo" width={30} height={24} className="d-inline-block align-text-top" /> เทคโนโลยีสารสนเทศ</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
     </button>
