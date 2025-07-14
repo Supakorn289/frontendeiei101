@@ -34,7 +34,14 @@ export default function Navbar() {
           <Link href="/contact" className="nav-link" aria-disabled="true">ติดต่อเรา</Link>
         </li>
       </ul>
-      <button><Link href="">เข้าสู่ระบบ</Link></button>
+<div style={{display: 'flex', gap: 5}}>
+  <button style={{backgroundColor: '#007bff', color: 'white', padding: '10px 20px', border: 'none', borderRadius: 5, cursor: 'pointer'}}>
+    <Link style={{color: 'white'}}classname="nav-link" href="/Login">เข้าสู่ระบบ</Link>
+  </button>
+  <button style={{backgroundColor: '#007bff', padding: '10px 20px', border: 'none', borderRadius: 5, cursor: 'pointer'}}>
+    <Link style={{color: 'white'}}classname="nav-link" href="Signup" >สมัครสมาชิก</Link>
+  </button>
+</div>
       <form className="d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
         <button className="btn btn-outline-warning" type="submit">Search</button>
