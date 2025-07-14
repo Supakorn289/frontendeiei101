@@ -11,7 +11,7 @@ const prompt = Prompt({
   display: 'swap',
 });
 export const metadata = {
-  title: 'เว็บไซต์ของคุณ',
+  title: 'IT fontend',
   description: 'เว็บไซต์ที่ใช้ฟอนต์ Prompt',
 };
 
