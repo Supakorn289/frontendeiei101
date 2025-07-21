@@ -5,7 +5,7 @@ export default function Signup() {
         <h1 className="text-4xl text-center text-blue-500 mb-5">SignUp Page</h1>
 
         <div className="mb-3" style={{ marginBottom: 25 }}>
-          <label htmlFor="exampleInputEmail1" className="form-label">Username</label><br />
+          <label htmlFor="exampleInputEmail1" className="form-label">Email address</label><br />
           <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ padding: 12 }} />
         </div>
 
@@ -34,17 +34,51 @@ export default function Signup() {
             <input type="text" className="form-control" id="firstName" required />
           </div>
         </div>
-
+        
+          <div >
+            <label htmlFor="lastName" className="form-label">Last name</label>
+            <input type="text" className="form-control" id="lastName" required />
+          </div>
+          <div style={{ display: 'flex', gap: '15px', marginBottom: 25 }}>
+          <div style={{ flex: 2 }}>
+            <label htmlFor="gender" className="form-label">เพศ</label>
+            <select className="form-select" id="gender" required>
+              <option selected disabled value></option>
+              <option>ชาย</option>
+              <option>หญิง</option>
+              <option>ไม่ระบุ</option>
+            </select>
+          </div>
+          <div style={{ flex: 1 }}>
+            <label htmlFor="birthday" className="form-label">วันเกิด</label>
+            <select className="form-select" id="birthday" required>
+           {[...Array(31)].map((_, i) => (
+            <option key={i} value={i + 1}> {i + 1} </option>  ))}
+            </select>
+            </div>
+            <div style={{ flex: 1 }}>
+            <label htmlFor="birthmonth" className="form-label">เดือนเกิด</label>
+            <select className="form-select" id="birthmonth" required>
+           {[...Array(12)].map((_, i) => (
+            <option key={i} value={i + 1}> {i + 1} </option>  ))}
+            </select>
+            </div>
+            <div style={{ flex: 1 }}>
+            <label htmlFor="yearmonth" className="form-label">ปีเกิด</label>
+            <select className="form-select" id="yearmonth" required>
+               {[...Array(2025 - 1940 + 1)].map((_, i) => (
+                <option key={i} value={1940 + i}>{1940 + i}</option> ))}
+            </select>
+            </div>
+          </div>
+        
         <div className="mb-3 form-check" style={{ marginBottom: 30 }}>
           <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-          <label className="form-check-label" htmlFor="exampleCheck1">จดจำฉันไว้</label>
+          <label className="form-check-label" htmlFor="exampleCheck1">ยอมรับเงื่อนไขทั้งหมด</label>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <button type="submit" className="btn btn-primary" style={{ padding: '12px 25px' }}>Login</button>
-          <button type="button" className="btn btn-outline-secondary" style={{ padding: '12px 25px' }}>
-            Sign Up
-          </button>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <button type="submit" className="btn btn-primary" style={{ padding: '12px 25px' }}>Sign Up</button>
         </div>
       </form>
     </div>
