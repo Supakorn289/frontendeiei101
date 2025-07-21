@@ -1,0 +1,113 @@
+/* ส่วนพื้นฐานใช้เหมือน signup ได้เลย */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.signup-form {
+  max-width: 500px;
+  width: 90%;
+  padding: 30px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.signup-form:hover {
+  box-shadow: 0 0 25px rgba(13, 110, 253, 0.2);
+}
+
+.signup-title {
+  text-align: center;
+  color: #0d6efd;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.form-text {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-top: 5px;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 8px rgba(13, 110, 253, 0.6);
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.form-check-input {
+  margin-right: 10px;
+}
+
+.form-submit-space {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ปุ่ม */
+.btn-submit {
+  background-color: #0d6efd;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(13, 110, 253, 0.3);
+}
+
+.btn-submit:hover {
+  background-color: #0b5ed7;
+  box-shadow: 0 0 20px rgba(13, 110, 253, 0.6), 0 0 40px rgba(13, 110, 253, 0.4);
+  transform: scale(1.05);
+}
+
+/* ปุ่มขอบบาง */
+.btn-outline {
+  background-color: transparent;
+  color: #0d6efd;
+  border: 2px solid #0d6efd;
+  padding: 12px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background-color: #0d6efd;
+  color: white;
+  box-shadow: 0 0 15px rgba(13, 110, 253, 0.4);
+}
