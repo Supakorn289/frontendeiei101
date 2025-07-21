@@ -1,0 +1,220 @@
+/* navber.css */
+
+/* ตัว navbar พื้นหลังสีขาว มีเงาเล็กน้อย */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 0.75rem 1rem;
+}
+
+/* โลโก้และชื่อ */
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.navbar-brand img {
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+/* เมนูหลัก */
+.navbar-nav .nav-link {
+  color: #007bff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* dropdown */
+.dropdown-menu {
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  min-width: 12rem;
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  color: #007bff;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* ปุ่มเข้าสู่ระบบ และสมัครสมาชิก */
+button {
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3 !important;
+}
+
+/* ลิงก์ในปุ่ม */
+button a {
+  color: white !important;
+  text-decoration: none;
+  display: block;
+}
+
+/* ช่องค้นหา */
+form.d-flex {
+  margin-left: 20px;
+}
+
+form.d-flex input.form-control {
+  border-radius: 4px 0 0 4px;
+  border: 1px solid #007bff;
+}
+
+form.d-flex button.btn {
+  border-radius: 0 4px 4px 0;
+  border: 1px solid #007bff;
+  background-color: #ffc107;
+  color: #212529;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+form.d-flex button.btn:hover {
+  background-color: #e0a800;
+  color: white;
+}
+
+/* Responsive: ปรับช่องค้นหาให้เต็มความกว้างบนมือถือ */
+@media (max-width: 576px) {
+  form.d-flex {
+    margin-top: 10px;
+    width: 100%;
+  }
+  form.d-flex input.form-control {
+    width: 70%;
+  }
+  form.d-flex button.btn {
+    width: 30%;
+  }
+}
+
+/* ปรับช่องว่างของปุ่ม login/signup */
+div[style*="display: flex"] {
+  margin-left: 15px;
+}
+.btn-login-signup {
+  background-color: #007bff;
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* เอฟเฟคเรืองแสงปกติ */
+.btn-login-signup {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+}
+
+/* เอฟเฟคเรืองแสงเวลาฮูเวอร์ */
+.btn-login-signup:hover {
+  background-color: #0056b3;
+  box-shadow:
+    0 0 10px #0056b3,
+    0 0 20px #0056b3,
+    0 0 40px #00bfff,
+    0 0 80px #00bfff;
+  color: #e0f7ff !important;
+  text-decoration: none;
+}
+
+/* เอาไว้สร้างเอฟเฟคแสงวิ่ง (ripple/glow) เวลาคลิก */
+.btn-login-signup:active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 10%, transparent 60%);
+  transform: translate(-50%, -50%) scale(0);
+  animation: clickGlow 0.5s forwards;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* อนิเมชันแสงวิ่งเวลาคลิก */
+@keyframes clickGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+/* ปรับลิงก์เมนูหลักให้มีเอฟเฟคเรืองแสง */
+.navbar-nav .nav-link {
+  color: #007bff;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* เอฟเฟคเรืองแสงเวลาวางเมาส์ */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: #0056b3;
+  text-shadow:
+    0 0 5px #0056b3,
+    0 0 10px #007bff,
+    0 0 20px #00bfff,
+    0 0 30px #00bfff;
+  outline: none;
+}
+
+/* เอฟเฟคตอน active (คลิก/เลือก) */
+.navbar-nav .nav-link:active {
+  color: #004080;
+  text-shadow:
+    0 0 8px #004080,
+    0 0 16px #0066cc;
+}
+
+/* เพิ่ม transition ที่นุ่มนวลให้ dropdown item ด้วย */
+.dropdown-menu .dropdown-item {
+  transition: background-color 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* เอฟเฟคเรืองแสง dropdown item เวลาวางเมาส์ */
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+  background-color: #007bff;
+  color: white !important;
+  text-shadow:
+    0 0 8px #00bfff,
+    0 0 15px #00bfff;
+  outline: none;
+}
