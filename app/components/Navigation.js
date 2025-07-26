@@ -3,6 +3,7 @@ import './navbar.css';
 
 export default function Navbar() {
   return (
+
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
         {/* โลโก้และชื่อ */}
@@ -28,7 +29,7 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" href="/">
+              <Link className="nav-link" aria-current="page" href="/">
                 หน้าแรก
               </Link>
             </li>

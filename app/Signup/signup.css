@@ -1,130 +1,130 @@
-.signup-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f8f9fa;
+/* signup.css */
+
+/* พื้นหลังแบบเต็มจอ */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+.signup-container {
+  background-image: url('/sunset-window.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* กล่อง Signup แบบ Glassmorphism */
 .signup-form {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
   max-width: 500px;
-  width: 90%;
-  padding: 30px;
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  color: #000000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 
 .signup-title {
   text-align: center;
-  color: #0d6efd;
+  margin-bottom: 30px;
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  color: #000000;
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 20px;
 }
 
 .form-label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
   font-weight: 500;
 }
 
 .form-control,
 .form-select {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ced4da;
-  border-radius: 6px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
   font-size: 1rem;
 }
 
+.form-control:focus,
+.form-select:focus {
+  outline: 2px solid #ffc107;
+}
+
+/* สำหรับ layout แบบแบ่งคอลัมน์ */
 .form-row {
   display: flex;
-  gap: 15px;
-  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .form-col {
   flex: 1;
+  min-width: 100px;
 }
 
 .form-col-large {
   flex: 2;
+  min-width: 150px;
 }
 
 .form-check {
-  display: flex;
-  align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 20px;
 }
 
-.form-check-input {
-  margin-right: 10px;
+.form-check-label {
+  margin-left: 5px;
 }
 
 .form-submit {
-  display: flex;
-  justify-content: center;
+  margin-top: 20px;
 }
 
 .btn-submit {
-  background-color: #0d6efd;
-  color: white;
-  padding: 12px 25px;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #ffc107;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 1rem;
   transition: background-color 0.3s ease;
 }
 
 .btn-submit:hover {
-  background-color: #0b5ed7;
-}
-/* ปุ่มที่เรืองแสงเมื่อ hover */
-.btn-submit {
-  background-color: #0d6efd;
-  color: white;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(13, 110, 253, 0.3);
+  background-color: #e0a800;
 }
 
-.btn-submit:hover {
-  background-color: #0b5ed7;
-  box-shadow: 0 0 20px rgba(13, 110, 253, 0.6), 0 0 40px rgba(13, 110, 253, 0.4);
-  transform: scale(1.05);
-}
+/* Responsive */
+@media (max-width: 480px) {
+  .signup-form {
+    padding: 25px;
+    max-width: 90%;
+  }
 
-/* Input และ Select เรืองแสงตอน focus */
-.form-control:focus,
-.form-select:focus {
-  outline: none;
-  border-color: #0d6efd;
-  box-shadow: 0 0 8px rgba(13, 110, 253, 0.6);
-}
+  .signup-title {
+    font-size: 1.5rem;
+  }
 
-/* ฟอร์มมี glow เล็กน้อย */
-.signup-form {
-  /* เดิม */
-  max-width: 500px;
-  width: 90%;
-  padding: 30px;
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-}
+  .form-row {
+    flex-direction: column;
+  }
 
-.signup-form:hover {
-  box-shadow: 0 0 25px rgba(13, 110, 253, 0.2);
+  .btn-submit {
+    width: 100%;
+  }
 }
