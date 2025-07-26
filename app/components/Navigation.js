@@ -1,15 +1,17 @@
 import Link from "next/link";
-import './navbar.css'; // ไฟล์ CSS ที่ตกแต่งไว้
+import './navbar.css';
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg bg-transparent">
+    <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
-        <Link href="/" className="navbar-brand d-flex align-items-center gap-2 text-white">
+        {/* โลโก้และชื่อ */}
+        <Link href="/" className="navbar-brand d-flex align-items-center gap-2">
           <img src="IT.png" alt="Logo" width={30} height={24} className="d-inline-block align-text-top" />
           เทคโนโลยีสารสนเทศ
         </Link>
 
+        {/* ปุ่ม toggle บน mobile */}
         <button
           className="navbar-toggler"
           type="button"
@@ -22,6 +24,7 @@ export default function Navbar() {
           <span className="navbar-toggler-icon" />
         </button>
 
+        {/* เมนูหลัก */}
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
@@ -82,16 +85,6 @@ export default function Navbar() {
             </li>
           </ul>
 
-          {/* ปุ่ม Login / Signup */}
-          <div style={{ display: "flex", gap: 10, marginRight: 20 }}>
-            <Link href="/Login" className="btn btn-primary btn-login-signup">
-              เข้าสู่ระบบ
-            </Link>
-            <Link href="/Signup" className="btn btn-primary btn-login-signup">
-              สมัครสมาชิก
-            </Link>
-          </div>
-
           {/* Search Bar */}
           <form className="d-flex" role="search">
             <input
@@ -104,6 +97,16 @@ export default function Navbar() {
               Search
             </button>
           </form>
+
+          {/* ปุ่ม Login / Signup */}
+          <div className="login-signup-group">
+            <Link href="/Login" className="btn btn-primary btn-login-signup">
+              เข้าสู่ระบบ
+            </Link>
+            <Link href="/Signup" className="btn btn-primary btn-login-signup">
+              สมัครสมาชิก
+            </Link>
+          </div>
         </div>
       </div>
     </nav>

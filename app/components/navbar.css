@@ -1,18 +1,20 @@
-/* navbar.css */
-
-/* Navbar พื้นหลังโปร่งใสแบบ Blur */
+/* Navbar พื้นหลังใสแบบ Glassmorphism Modern */
 .navbar {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* ปรับขนาดและน้ำหนักตัวอักษร */
+/* Brand */
 .navbar-brand {
-  font-weight: 600;
-  font-size: 1.25rem;
+  font-weight: 700;
+  font-size: 1.4rem;
   color: #000000;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* ลิงก์ในเมนู */
@@ -25,7 +27,7 @@
 .nav-link:hover,
 .nav-link:focus {
   color: #ffc107;
-  transform: scale(1.05);
+  transform: translateY(-2px);
 }
 
 /* Active link */
@@ -34,59 +36,97 @@
   font-weight: 600;
 }
 
-/* ปรับปุ่ม Login / Signup */
+/* ปุ่ม Login / Signup */
 .btn-login-signup {
-  border-radius: 20px;
-  padding: 6px 16px;
-  transition: all 0.3s ease;
-  border: none;
+  border-radius: 30px;
+  padding: 6px 20px;
   font-weight: 500;
+  background: linear-gradient(to right, #ffc107, #ff9800);
+  color: #000;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn-login-signup:hover {
+  background: linear-gradient(to right, #ffb300, #ffa000);
   transform: scale(1.05);
-  background-color: #ffca2c;
   color: #000;
 }
 
-/* Search bar ปรับให้กลม */
+/* Search bar */
 form.d-flex input {
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  background-color: rgba(255,255,255,0.15);
-  color: #fff;
+  border-radius: 30px;
+  border: none;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #000000;
+  transition: background-color 0.3s ease;
 }
 
 form.d-flex input::placeholder {
   color: #ccc;
 }
 
+form.d-flex input:focus {
+  background-color: rgba(255, 255, 255, 0.25);
+  outline: none;
+}
+
 form.d-flex button {
-  border-radius: 20px;
+  border-radius: 30px;
+  padding: 6px 16px;
+  transition: all 0.3s ease;
+}
+
+/* ปุ่มในมือถือ / แถบ dropdown */
+.navbar-toggler {
+  border: none;
+  filter: invert(1);
 }
 
 /* เมนู Dropdown */
 .dropdown-menu {
-  background-color: rgba(30, 30, 30, 0.95);
-  border-radius: 10px;
+  background: rgba(20, 20, 20, 0.9);
   border: none;
+  border-radius: 12px;
+  padding: 10px 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
 .dropdown-item {
-  color: #f1f1f1;
-  transition: background-color 0.3s ease;
+  color: #f0f0f0;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
 }
 
 .dropdown-item:hover {
-  background-color: #444;
+  background-color: rgba(255, 193, 7, 0.1);
   color: #ffc107;
 }
 
-/* Responsive Fix */
+/* ปุ่ม Login/Signup จัดกลุ่ม */
+.login-signup-group {
+  display: flex;
+  gap: 10px;
+  margin-right: 20px;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .navbar-collapse {
     background-color: rgba(0, 0, 0, 0.85);
     padding: 1rem;
     border-radius: 12px;
+  }
+
+  .login-signup-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    flex-direction: column;
+  }
+
+  .btn-login-signup {
+    width: 100%;
   }
 }
