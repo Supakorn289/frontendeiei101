@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import './login.css'; // อย่าลืมนำเข้า CSS
+import './login1.css'; // อย่าลืมนำเข้า CSS
 
 export default function Login() {
   return (

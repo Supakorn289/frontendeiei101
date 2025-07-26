@@ -1,11 +1,11 @@
 import Link from "next/link";
-import './navbar.css'; // ไฟล์ CSS ที่เราสร้างไว้
+import './navbar.css'; // ไฟล์ CSS ที่ตกแต่งไว้
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-transparent">
       <div className="container-fluid">
-        <Link href="/" className="navbar-brand d-flex align-items-center gap-2">
+        <Link href="/" className="navbar-brand d-flex align-items-center gap-2 text-white">
           <img src="IT.png" alt="Logo" width={30} height={24} className="d-inline-block align-text-top" />
           เทคโนโลยีสารสนเทศ
         </Link>
@@ -76,12 +76,13 @@ export default function Navbar() {
               </ul>
             </li>
             <li className="nav-item">
-              <Link href="/contact" className="nav-link" aria-disabled="true">
+              <Link href="/contact" className="nav-link">
                 ติดต่อเรา
               </Link>
             </li>
           </ul>
 
+          {/* ปุ่ม Login / Signup */}
           <div style={{ display: "flex", gap: 10, marginRight: 20 }}>
             <Link href="/Login" className="btn btn-primary btn-login-signup">
               เข้าสู่ระบบ
@@ -91,6 +92,7 @@ export default function Navbar() {
             </Link>
           </div>
 
+          {/* Search Bar */}
           <form className="d-flex" role="search">
             <input
               className="form-control me-2"
