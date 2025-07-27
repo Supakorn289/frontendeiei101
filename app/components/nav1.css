@@ -1,0 +1,30 @@
+.navbar-custom {
+      background-color: rgba(0, 0, 0, 0.175); /* โปร่งใส 40% */
+      border-radius: 15px;
+      padding: 0.5rem 2rem;
+      backdrop-filter: blur(10px); /* เบลอพื้นหลังเล็กน้อย */
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .navbar .nav-link,
+    .navbar .navbar-brand {
+      color: white !important;
+    }
+
+    .navbar .nav-link:hover {
+      color: #ffc107 !important; /* สีทองเมื่อ hover */
+    }
+
+    .btn-outline-light {
+      border-color: white;
+      color: white;
+    }
+
+    .btn-outline-light:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .bg-purple {
+      background-color: #8000ff;
+    }

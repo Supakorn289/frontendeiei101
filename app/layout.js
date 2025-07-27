@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Prompt } from 'next/font/google';
-import Navigation from "./components/Navigation";
+import Navbar1 from './components/nav1';
+import Navbar from './components/Navigation';
 import Footer from './components/Footer';
 
 
@@ -20,7 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="th">
       <body className={prompt.className}>
-        <Navigation/>
+        <Navbar/>
         {children}
         <Footer/>
       </body>
