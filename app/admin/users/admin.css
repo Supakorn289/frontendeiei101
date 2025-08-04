@@ -1,5 +1,5 @@
 body {
-  background-image: url('/background.jpg'); /* เปลี่ยน path ตามที่คุณวางรูป */
+  background-image: url('/admin.jpg'); /* เปลี่ยน path ตามที่คุณวางรูป */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -41,6 +41,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 12px;
   vertical-align: middle;
+    color: rgb(255, 255, 255);
 }
 
 .table th {
@@ -53,7 +54,7 @@ body {
 
 .btn-warning {
   background-color: #ffc107;
-  color: black;
+  color: rgb(0, 0, 0);
 }
 
 .btn-danger {
