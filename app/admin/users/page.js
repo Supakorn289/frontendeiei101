@@ -63,9 +63,6 @@ export default function Page() {
                     <th>Lastname</th>
                     <th>Username</th>
                     <th>Password</th>
-                    <th>Address</th>
-                    <th>Sex</th>
-                    <th>Birthday</th>
                     <th>Edit</th>
                     <th>Delete</th>
                   </tr>
@@ -79,9 +76,6 @@ export default function Page() {
                       <td>{item.lastname}</td>
                       <td>{item.username}</td>
                       <td>{item.password}</td>
-                      <td>{item.address}</td>
-                      <td>{item.sex}</td>
-                      <td>{item.birthday}</td>
                       <td>
                         <Link href={`/admin/edit/${item.id}`} className="btn btn-warning">
                           Edit
