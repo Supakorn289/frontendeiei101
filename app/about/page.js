@@ -1,3 +1,5 @@
+//import Card from "../components/cardabout"  
+
 export default function About() {
   return(
     <>
