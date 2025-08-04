@@ -4,6 +4,7 @@ import { Prompt } from 'next/font/google';
 import Navbar1 from './components/nav1';
 import Navbar from './components/Navigation';
 import Footer from './components/Footer';
+import styles from './Home.module.css';
 
 
 const prompt = Prompt({

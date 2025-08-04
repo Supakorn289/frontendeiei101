@@ -1,0 +1,17 @@
+@media (max-width: 768px) {
+  .some-class {
+    /* สไตล์สำหรับหน้าจอที่มีขนาดเล็กกว่า 768px */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .some-class {
+    /* สไตล์สำหรับหน้าจอขนาดกลาง */
+  }
+}
+
+@media (min-width: 1201px) {
+  .some-class {
+    /* สไตล์สำหรับหน้าจอขนาดใหญ่ */
+  }
+}

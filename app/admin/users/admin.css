@@ -1,0 +1,62 @@
+body {
+  background-image: url('/background.jpg'); /* เปลี่ยน path ตามที่คุณวางรูป */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 95%;
+}
+
+.card {
+  background-color: rgba(0, 0, 0, 0.6); /* สีดำโปร่งใส */
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.card-header {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.table {
+  background-color: transparent;
+  color: #fff;
+}
+
+.table th,
+.table td {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px;
+  vertical-align: middle;
+}
+
+.table th {
+  color: #ffcc70;
+}
+
+.btn {
+  font-size: 0.9rem;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: black;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
