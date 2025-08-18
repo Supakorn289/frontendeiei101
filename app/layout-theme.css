@@ -1,0 +1,106 @@
+/* Layout-only theme: Pink x Black x Gold with CSS + JS hooks */
+
+/* Ensure full-viewport background */
+html, body { height: 100%; }
+
+/* Design tokens scoped to layout body */
+.romance-dark {
+  /* Palette */
+  --ld-bg-1: #0b0710;     /* deep black plum */
+  --ld-bg-2: #2b0e1f;     /* dark wine */
+  --ld-pink: #ff6fb5;     /* rose pink */
+  --ld-gold: #ffd166;     /* warm gold */
+  --ld-baby: #ffc2e6;     /* baby pink */
+  --ld-white: #f8f9fb;    /* soft white */
+  --ld-text: #ffe9f3;     /* light on dark */
+  --ld-dim:  #ffcfe3;     /* dim text */
+
+  /* Depth */
+  --ld-shadow: 0 24px 60px rgba(40, 7, 22, 0.55);
+}
+
+/* Animated layered background */
+.romance-dark {
+  color: var(--ld-white);
+  background:
+    radial-gradient(1200px 700px at -10% -20%, rgba(255, 111, 181, 0.18), transparent 55%),
+    radial-gradient(900px 600px at 110% 120%, rgba(255, 194, 230, 0.16), transparent 55%),
+    linear-gradient(135deg, var(--ld-bg-1) 0%, #1a0a14 40%, var(--ld-bg-2) 100%);
+  min-height: 100vh;
+  background-attachment: fixed;
+  animation: ldBgDrift 26s ease-in-out infinite alternate;
+}
+
+/* Subtle aurora ribbons */
+.romance-dark::before,
+.romance-dark::after {
+  content: "";
+  position: fixed; inset: -20% -20%; pointer-events: none; z-index: 0;
+  background: conic-gradient(from 0deg, rgba(255,111,181,0.20), rgba(255,209,102,0.14), transparent, rgba(255,111,181,0.20));
+  filter: blur(60px) saturate(1.05);
+  mix-blend-mode: screen;
+  animation: ldAurora 40s linear infinite;
+}
+.romance-dark::after { animation-direction: reverse; animation-duration: 56s; opacity: .75; }
+
+/* Cursor glow element (JS moves it) */
+.layout-cursor-glow {
+  position: fixed; width: 280px; height: 280px; border-radius: 50%; left: 0; top: 0;
+  transform: translate3d(-9999px, -9999px, 0); pointer-events: none; z-index: 0; opacity: 0;
+  background: radial-gradient(closest-side, rgba(255,111,181,0.40), rgba(255,209,102,0.26), rgba(255,194,230,0.22), transparent 70%);
+  mix-blend-mode: screen; filter: blur(18px) saturate(1.05);
+  transition: opacity .25s ease, transform .05s linear;
+}
+
+/* Typography — standout white/pink/gold accents */
+.romance-dark h1,
+.romance-dark h2,
+.romance-dark h3 {
+  margin: .25rem 0 .5rem;
+  font-weight: 900;
+  letter-spacing: .3px;
+  line-height: 1.15;
+  background: linear-gradient(90deg, var(--ld-white), var(--ld-pink) 55%, var(--ld-gold));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 0 18px rgba(255,111,181,0.18);
+}
+.romance-dark h4,
+.romance-dark h5,
+.romance-dark h6 {
+  color: var(--ld-white);
+  font-weight: 800;
+  letter-spacing: .25px;
+}
+.romance-dark p {
+  color: var(--ld-white);
+  line-height: 1.75;
+}
+.romance-dark .lead { color: var(--ld-baby); font-size: 1.1rem; }
+.romance-dark .text-dim { color: var(--ld-dim); }
+
+/* Utilities for themed text colors (opt-in to avoid affecting navigation) */
+.romance-dark .text-gold { color: var(--ld-gold); }
+.romance-dark .text-pink { color: var(--ld-pink); }
+.romance-dark .title-gradient { background: linear-gradient(90deg, var(--ld-pink), var(--ld-gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Decorative helpers (opt-in) */
+.romance-dark .divider { height: 1px; margin: 16px 0; background: linear-gradient(90deg, transparent, rgba(255,111,181,.45), rgba(255,209,102,.5), transparent); }
+.romance-dark .panel-glass {
+  background: rgba(46, 12, 28, 0.55);
+  border: 1px solid rgba(255, 194, 230, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(40, 7, 22, 0.45), inset 0 0 22px rgba(255, 194, 230, 0.12);
+}
+
+/* Safe container layer to ensure content sits above background effects */
+.romance-dark > * { position: relative; z-index: 1; }
+
+/* Selection color */
+.romance-dark ::selection { background: rgba(255,111,181,.35); color: #1a0a14; }
+
+/* Keyframes */
+@keyframes ldBgDrift {
+  0% { background-position: 0% 50%, 0% 50%, 0% 0%; }
+  100% { background-position: 100% 50%, 100% 50%, 100% 100%; }
+}
+@keyframes ldAurora { to { transform: rotate(360deg); } }

@@ -157,7 +157,7 @@ export default function Page() {
       <div ref={cardRef} className="edit-card">
         <div className="edit-header">
           <div className="edit-badge"><i className="bi bi-person-gear"></i></div>
-          <h2>แก้��ขข้อมูลสมาชิก</h2>
+          <h2>แก้ไขข้อมูลสมาชิก</h2>
           <div className="subtitle">เลขรายการ: #{id}</div>
         </div>
 
@@ -251,7 +251,7 @@ export default function Page() {
                     >
                       <i className={showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}></i>
                     </button>
-                    <div className="helper">อย่างน้อย 8 ตัวอักษร ประกอบด้วย ตัวพิมพ์ใหญ่ ตัวเลข และอักขระพิเศษ</div>
+                    <div className="helper">อย่างน้อย 8 ตัวอักษร</div>
                   </div>
                 </label>
               </div>

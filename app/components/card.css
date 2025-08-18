@@ -1,0 +1,155 @@
+/* Team Card theme: Pink • Gold • Black */
+
+.team-section .team-title {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  background: linear-gradient(135deg, #ffd166 0%, #ffedb3 50%, #ffd166 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+}
+.team-section .title-underline {
+  width: 86px;
+  height: 3px;
+  margin: 10px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff69b4, #ffd166);
+  box-shadow: 0 4px 16px rgba(255, 105, 180, 0.35);
+}
+
+/* Base card with gradient outline and subtle tilt */
+.neo-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: -999px;
+  --my: -999px;
+  position: relative;
+  border-radius: 16px;
+  background:
+    radial-gradient(800px 200px at 50% -10%, rgba(255, 105, 180, 0.1), transparent),
+    radial-gradient(600px 200px at 10% 110%, rgba(255, 209, 102, 0.08), transparent),
+    #0d0b10;
+  padding: 16px 16px 12px;
+  box-shadow:
+    0 12px 34px rgba(13, 11, 16, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  transform-style: preserve-3d;
+  transform: perspective(800px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+  overflow: hidden;
+}
+.neo-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 18px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.55), rgba(255, 209, 102, 0.6));
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+.neo-card::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 209, 102, 0.14);
+  pointer-events: none;
+  z-index: 1;
+}
+.neo-card .shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(260px 260px at var(--mx) var(--my), rgba(255, 209, 102, 0.16), rgba(255, 105, 180, 0.12), transparent 60%);
+  opacity: 0;
+  transition: opacity .2s ease;
+  mix-blend-mode: screen;
+  z-index: 1;
+}
+.neo-card.hovering .shine { opacity: 1; }
+.neo-card:hover { box-shadow: 0 18px 46px rgba(13,11,16,0.58), inset 0 0 0 1px rgba(255,255,255,0.05); transform: translateY(-4px); filter: saturate(1.03); }
+.neo-card.hovering::before, .neo-card:hover::before { animation: borderShift 2.8s linear infinite; }
+
+/* Portrait with gradient ring */
+.portrait {
+  position: relative;
+  width: 74%;
+  margin: 16px auto 12px;
+  border-radius: 14px;
+  padding: 6px;
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.5), rgba(255, 209, 102, 0.6));
+  box-shadow: 0 10px 26px rgba(13,11,16,0.45);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.neo-card:hover .portrait { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(13,11,16,0.55); }
+.portrait::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 12px;
+  background: #0d0b10;
+  z-index: 0;
+}
+.portrait img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  z-index: 1;
+  filter: saturate(1.03) contrast(1.02) brightness(0.98);
+  transition: transform .25s ease;
+}
+.neo-card:hover .portrait img { transform: scale(1.015); }
+
+/* Name text */
+.name {
+  margin: 6px 0 2px;
+  font-weight: 700;
+  letter-spacing: .25px;
+  color: #fffaf2;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.45);
+}
+.name::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 2px;
+  margin: 6px auto 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff9ad0, #ffd166);
+  box-shadow: 0 2px 10px rgba(255,105,180,0.35);
+}
+.name .accent {
+  background: linear-gradient(135deg, #ffd166, #ffedb3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Reveal on scroll */
+.reveal { opacity: 0; transform: translateY(8px); }
+.in-view { opacity: 1; transform: translateY(0); transition: opacity .5s ease, transform .5s ease; }
+
+@keyframes borderShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@media (max-width: 768px) {
+  .portrait { width: 80%; }
+  .team-section .title-underline { width: 70px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neo-card { transition: none; transform: none !important; }
+  .neo-card .shine { display: none; }
+  .reveal, .in-view { transition: none; transform: none; opacity: 1; }
+}

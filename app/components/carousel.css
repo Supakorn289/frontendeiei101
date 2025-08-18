@@ -1,0 +1,218 @@
+/* Love theme for Carousel: Pink • Black • Gold */
+
+/* Base wrapper with romantic glow and gradient border */
+.romance-carousel {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    radial-gradient(1200px 400px at 50% -10%, rgba(255, 105, 180, 0.12), transparent),
+    radial-gradient(800px 300px at 10% 110%, rgba(255, 209, 102, 0.08), transparent),
+    #0d0b10;
+  box-shadow:
+    0 14px 40px rgba(13, 11, 16, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Gradient outline */
+.romance-carousel::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.6), rgba(255, 209, 102, 0.68));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Make sure content is layered properly */
+.romance-carousel .carousel-inner {
+  position: relative;
+  z-index: 0;
+}
+
+/* Images styling */
+.romance-carousel .carousel-item img {
+  display: block;
+  width: 100%;
+  height: clamp(320px, 62vh, 720px);
+  object-fit: cover;
+  filter: saturate(1.02) contrast(1.02) brightness(0.98);
+  transform: scale(1.0);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter .45s ease;
+}
+.romance-carousel .carousel-item.active img {
+  transform: scale(1.02);
+}
+
+/* Vignette overlay for readability and depth */
+.romance-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(80% 70% at 50% 55%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 60%, rgba(0,0,0,0.38) 100%),
+    linear-gradient(to bottom, rgba(13,11,16,0) 58%, rgba(13,11,16,0.28) 100%);
+  z-index: 1;
+}
+
+/* Captions: glassmorphism with gold accent */
+.romance-carousel .carousel-caption {
+  bottom: 9%;
+  background:
+    linear-gradient(rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
+    linear-gradient(to bottom right, rgba(255, 105, 180, 0.22), rgba(255, 209, 102, 0.20));
+  backdrop-filter: blur(5px) saturate(1.08);
+  -webkit-backdrop-filter: blur(5px) saturate(1.08);
+  border-radius: 14px;
+  padding: 12px 18px;
+  border: 1px solid rgba(255, 209, 102, 0.42);
+  box-shadow: 0 6px 22px rgba(255, 105, 180, 0.22);
+  color: #fffaf2;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.55);
+  z-index: 3;
+}
+.romance-carousel .caption-title {
+  margin: 0 0 4px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  background: linear-gradient(135deg, #ffd166 0%, #ffedb3 50%, #ffd166 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.romance-carousel .caption-sub {
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  color: #ffe7f3;
+}
+
+/* Subtle caption entrance animation */
+.romance-carousel .carousel-item .carousel-caption { opacity: 0; transform: translateY(8px); }
+.romance-carousel .carousel-item.active .carousel-caption { animation: captionFadeUp .6s ease-out both .12s; }
+@keyframes captionFadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Indicators: romantic dots with glow */
+.romance-carousel .carousel-indicators {
+  margin-bottom: 10px;
+}
+.romance-carousel .carousel-indicators [data-bs-target] {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ff9ad0, #ff69b4);
+  border: 1px solid rgba(255, 209, 102, 0.6);
+  box-shadow: 0 0 0 1px rgba(13, 11, 16, 0.55), 0 2px 8px rgba(255, 105, 180, 0.28);
+  opacity: 0.75;
+  transition: transform .25s ease, opacity .25s ease, box-shadow .25s ease;
+}
+.romance-carousel .carousel-indicators .active {
+  opacity: 1;
+  transform: scale(1.18);
+  box-shadow:
+    0 0 0 2px rgba(13, 11, 16, 0.55),
+    0 0 0 3px rgba(255, 209, 102, 0.32),
+    0 6px 18px rgba(255, 105, 180, 0.42);
+}
+
+/* Controls: glassy circular buttons with glow */
+.romance-carousel .romance-control {
+  width: 52px;
+}
+.romance-carousel .carousel-control-prev,
+.romance-carousel .carousel-control-next {
+  width: auto;
+  padding: 0 12px;
+}
+.romance-carousel .romance-control::before {
+  content: '';
+  position: absolute;
+  inset: calc(50% - 22px) 8px auto auto;
+  /* This positions the circle around the icon */
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(13, 11, 16, 0.3);
+  border: 1px solid rgba(255, 209, 102, 0.28);
+  box-shadow: 0 6px 18px rgba(255, 105, 180, 0.22);
+  transform: translateY(-50%);
+}
+.romance-carousel .carousel-control-prev-icon,
+.romance-carousel .carousel-control-next-icon {
+  filter: drop-shadow(0 0 4px rgba(255, 209, 102, 0.35)) drop-shadow(0 0 12px rgba(255, 105, 180, 0.25)) invert(1);
+  width: 1.75rem;
+  height: 1.75rem;
+}
+.romance-carousel .carousel-control-prev:hover .carousel-control-prev-icon,
+.romance-carousel .carousel-control-next:hover .carousel-control-next-icon {
+  filter: drop-shadow(0 0 6px rgba(255, 209, 102, 0.6)) drop-shadow(0 0 14px rgba(255, 105, 180, 0.45)) invert(1);
+}
+
+/* Floating heart particles layer */
+.heart-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2; /* above vignette, below captions/controls */
+}
+.heart {
+  position: absolute;
+  bottom: -24px;
+  width: var(--size, 12px);
+  height: var(--size, 12px);
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.65), rgba(255,105,180,0.9) 60%, rgba(255,105,180,0.6));
+  transform: rotate(45deg) scale(0.9);
+  border-radius: 2px;
+  animation: floatUp var(--duration, 6s) linear forwards;
+  opacity: 0.6;
+  box-shadow: 0 0 6px rgba(255, 105, 180, 0.45), 0 0 12px rgba(255, 209, 102, 0.2);
+}
+.heart::before, .heart::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: 50%;
+}
+.heart::before { top: -50%; left: 0; }
+.heart::after { left: -50%; top: 0; }
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(45deg) scale(0.8); opacity: 0; }
+  10% { opacity: 0.95; }
+  100% { transform: translateY(-100%) rotate(45deg) scale(1.12); opacity: 0; }
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .romance-carousel .carousel-caption {
+    bottom: 4.5%;
+    padding: 10px 14px;
+  }
+  .romance-carousel .caption-title {
+    font-size: 1rem;
+  }
+  .romance-carousel .caption-sub {
+    font-size: 0.875rem;
+  }
+  .romance-carousel .carousel-indicators {
+    margin-bottom: 6px;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .romance-carousel .carousel-item img { transition: none; }
+  .heart { animation: none; display: none; }
+}

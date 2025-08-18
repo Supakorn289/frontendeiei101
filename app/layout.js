@@ -4,8 +4,7 @@ import { Prompt } from 'next/font/google';
 import Navbar from './components/Navigation';
 import Footer from './components/Footer';
 import styles from './Home.module.css';
-//import './globals.css';
-
+import './layout-theme.css';
 
 const prompt = Prompt({
   subsets: ['thai', 'latin'], // รองรับภาษาไทย
@@ -21,10 +20,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="th">
-      <body className={prompt.className}>
+      <body className={`${prompt.className} romance-dark`}>
         <Navbar/>
         {children}
-        <Footer/>
+       
       </body>
     </html>
   );
