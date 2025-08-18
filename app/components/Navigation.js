@@ -10,7 +10,6 @@ export default function Navbar() {
   const glowRef = useRef(null)
 
   const [elevated, setElevated] = useState(false)
-  const [tilt, setTilt] = useState({ x: 0, y: 0 })
   const [glow, setGlow] = useState({ x: -9999, y: -9999, visible: false })
 
   useEffect(() => {
@@ -24,32 +23,19 @@ export default function Navbar() {
     const nav = navRef.current
     if (!nav) return
     const rect = nav.getBoundingClientRect()
-    const cx = rect.left + rect.width / 2
-    const cy = rect.top + rect.height / 2
-    const dx = e.clientX - cx
-    const dy = e.clientY - cy
-    const nx = Math.max(-1, Math.min(1, dx / (rect.width / 2)))
-    const ny = Math.max(-1, Math.min(1, dy / (rect.height / 2)))
-
-    setTilt({ x: (-ny * 2), y: (nx * 2) })
-
     const localX = e.clientX - rect.left - 120
     const localY = e.clientY - rect.top - 120
     setGlow({ x: localX, y: localY, visible: true })
   }
   const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 })
     setGlow((g) => ({ ...g, visible: false }))
   }
 
   const navStyle = {
-    position: 'relative',
-    transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-    transformStyle: 'preserve-3d',
-    transition: 'transform .25s ease, box-shadow .25s ease',
-    boxShadow: elevated
-      ? '0 10px 28px rgba(40, 7, 22, 0.45)'
-      : undefined,
+    position: 'sticky',
+    top: 0,
+    transition: 'box-shadow .25s ease',
+    boxShadow: elevated ? '0 10px 28px rgba(40, 7, 22, 0.45)' : undefined,
   }
 
   const glowStyle = {
@@ -63,7 +49,7 @@ export default function Navbar() {
     transform: `translate3d(${glow.x}px, ${glow.y}px, 0)`,
     opacity: glow.visible ? 1 : 0,
     transition: 'opacity .25s ease, transform .05s linear',
-    background: 'radial-gradient(closest-side, rgba(255,111,181,0.38), rgba(255,194,230,0.30), transparent 70%)',
+    background: 'radial-gradient(closest-side, rgba(255,111,181,0.42), rgba(255,209,102,0.28), rgba(255,194,230,0.22), transparent 70%)',
     mixBlendMode: 'screen',
     filter: 'blur(16px) saturate(1.05)',
     zIndex: 0,
@@ -79,13 +65,8 @@ export default function Navbar() {
     >
       <div ref={glowRef} style={glowStyle} aria-hidden="true" />
       <div className="container-fluid position-relative" style={{ zIndex: 1 }}>
-        {/* โลโก้และชื่อ + ปุ่มย้อนกลับ */}
-        <div className="d-flex align-items-center gap-2">
-          <button type="button" className="btn btn-back" onClick={() => router.back()}>
-            <i className="bi bi-arrow-left"></i>
-            <span className="d-none d-md-inline ms-1">Back</span>
-          </button>
-          <Link href="/" className="navbar-brand d-flex align-items-center gap-2">
+        {/* โลโก้และช���่อ + ปุ่มย้อนกลับ */}
+        <div className="d-flex align-items-center gap-2">          <Link href="/" className="navbar-brand d-flex align-items-center gap-2">
             <img src="IT.png" alt="Logo" width={30} height={24} className="d-inline-block align-text-top" />
             เทคโนโลยีสารสนเทศ
           </Link>
