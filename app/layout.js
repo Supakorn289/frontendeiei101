@@ -1,10 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Prompt } from 'next/font/google';
-import Navbar1 from './components/nav1';
 import Navbar from './components/Navigation';
 import Footer from './components/Footer';
 import styles from './Home.module.css';
+//import './globals.css';
 
 
 const prompt = Prompt({

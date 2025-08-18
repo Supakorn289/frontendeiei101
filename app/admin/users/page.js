@@ -77,7 +77,7 @@ export default function Page() {
                       <td>{item.username}</td>
                       <td>{item.password}</td>
                       <td>
-                        <Link href={`/admin/edit/${item.id}`} className="btn btn-warning">
+                        <Link href={`/admin/users/edit/${item.id}`} className="btn btn-warning">
                           Edit
                         </Link>
                       </td>
