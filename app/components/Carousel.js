@@ -1,12 +1,68 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import './carousel.css';
 
 export default function Carousel() {
-  
+  const heartLayerRef = useRef(null);
+
   useEffect(() => {
     // ensure Bootstrap JS is loaded for Carousel behavior
     import('bootstrap/dist/js/bootstrap.bundle.min.js');
+
+    // spawn floating hearts periodically
+    const layer = heartLayerRef.current;
+    if (!layer) return;
+    const MAX_HEARTS = 12;
+
+    const spawnHeart = () => {
+      const heart = document.createElement('span');
+      heart.className = 'heart';
+      if (layer.childElementCount >= MAX_HEARTS) return;
+      const size = Math.random() * 8 + 6; // 6 - 14px
+      const duration = Math.random() * 5 + 7; // 7 - 12s
+      const left = Math.random() * 100; // percentage
+      heart.style.setProperty('--size', `${size}px`);
+      heart.style.setProperty('--duration', `${duration}s`);
+      heart.style.left = `${left}%`;
+      layer.appendChild(heart);
+      // cleanup after animation
+      setTimeout(() => heart.remove(), duration * 1000);
+    };
+
+    let interval = null;
+    let running = false;
+    const start = () => {
+      if (running) return;
+      running = true;
+      interval = setInterval(spawnHeart, 1400);
+    };
+    const stop = () => {
+      running = false;
+      if (interval) {
+        clearInterval(interval);
+        interval = null;
+      }
+    };
+
+    // Use IntersectionObserver to only animate when visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) start();
+          else stop();
+        });
+      },
+      { root: null, threshold: 0.2 }
+    );
+    observer.observe(layer);
+
+    // Start if page is initially visible and in viewport
+    start();
+
+    return () => {
+      stop();
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -16,7 +72,9 @@ export default function Carousel() {
       data-bs-ride="carousel"
       data-bs-interval="4200"
     >
-                  {/* vignette overlay */}
+      {/* floating hearts layer */}
+      <div ref={heartLayerRef} className="heart-layer" aria-hidden="true" />
+      {/* vignette overlay */}
       <div className="romance-vignette" aria-hidden="true" />
 
       <div className="carousel-indicators">

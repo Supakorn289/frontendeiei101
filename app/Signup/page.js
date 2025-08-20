@@ -26,8 +26,9 @@ export default function Signup() {
       method: 'POST',
       headers: {
         Accept : 'application/json',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ firstname, fullname, lastname, username, password }),
+      body: JSON.stringify({ email, firstname, fullname, lastname, gender, birthday, birthmonth, yearmonth, username, password }),
     })
 
     const result = await res.json();
@@ -35,11 +36,13 @@ export default function Signup() {
     if (res.ok) {
       Swal.fire({
         icon: 'success',
+        position: 'center',
+        toast: false,
         title: '<h3>บันทึกข้อมูลเรียบร้อยแล้ว</h3>',
         showConfirmButton: false,
         timer: 2000
         }).then(function () {
-        router.push('/signin');
+        router.push('/Login');
       });
       setEmail('')
       setFirstname('')
@@ -56,12 +59,16 @@ export default function Signup() {
         title: 'Error!',
         text: 'เกิดข้อผิดพลาด!',
         icon: 'error',
+        position: 'center',
+        toast: false,
         confirmButtonText: 'ตกลง'
       })
     }
   } catch (error) {
     Swal.fire({
       icon: 'error',
+      position: 'center',
+      toast: false,
       title: 'ข้อผิดพลาดเครือข่าย',
       text: 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้',
     })
@@ -86,8 +93,8 @@ export default function Signup() {
         <div className="form-row">
           <div className="form-col">
             <label htmlFor="prefix" className="form-label">คำนำหน้า</label>
-            <select className="form-select" id="prefix" required name="firstname" onChange={(e) => setFirstname(e.target.value)}>
-              <option disabled selected value></option>
+            <select className="form-select" id="prefix" required name="firstname" onChange={(e) => setFirstname(e.target.value)} defaultValue="">
+              <option value="" disabled></option>
               <option>เด็กชาย</option>
               <option>เด็กหญิง</option>
               <option>นาย</option>
@@ -116,8 +123,8 @@ export default function Signup() {
         <div className="form-row">
           <div className="form-col-large">
             <label htmlFor="gender" className="form-label">เพศ</label>
-            <select className="form-select" id="gender" required name="gender" onChange={(e) => setGender(e.target.value)}>
-              <option disabled selected value></option>
+            <select className="form-select" id="gender" required name="gender" onChange={(e) => setGender(e.target.value)} defaultValue="">
+              <option value="" disabled></option>
               <option>ชาย</option>
               <option>หญิง</option>
               <option>ไม่ระบุ</option>
@@ -126,7 +133,8 @@ export default function Signup() {
 
           <div className="form-col">
             <label htmlFor="birthday" className="form-label">วันเกิด</label>
-            <select className="form-select" id="birthday" name="birthday" onChange={(e) => setBirthday(e.target.value)} required>
+            <select className="form-select" id="birthday" name="birthday" onChange={(e) => setBirthday(e.target.value)} required defaultValue="">
+              <option value="" disabled></option>
               {[...Array(31)].map((_, i) => (
                 <option key={i} value={i + 1}>{i + 1}</option>
               ))}
@@ -135,7 +143,8 @@ export default function Signup() {
 
           <div className="form-col">
             <label htmlFor="birthmonth" className="form-label">เดือนเกิด</label>
-            <select className="form-select" id="birthmonth" required name="birthmonth" onChange={(e) => setBirthmonth(e.target.value)}>
+            <select className="form-select" id="birthmonth" required name="birthmonth" onChange={(e) => setBirthmonth(e.target.value)} defaultValue="">
+              <option value="" disabled></option>
               {[...Array(12)].map((_, i) => (
                 <option key={i} value={i + 1}>{i + 1}</option>
               ))}
@@ -144,7 +153,8 @@ export default function Signup() {
 
           <div className="form-col">
             <label htmlFor="yearmonth" className="form-label">ปีเกิด</label>
-            <select className="form-select" id="yearmonth" required name="yearmonth" onChange={(e) => setYearmonth(e.target.value)}>
+            <select className="form-select" id="yearmonth" required name="yearmonth" onChange={(e) => setYearmonth(e.target.value)} defaultValue="">
+              <option value="" disabled></option>
               {[...Array(2025 - 1940 + 1)].map((_, i) => (
                 <option key={i} value={1940 + i}>{1940 + i}</option>
               ))}
