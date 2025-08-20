@@ -1,45 +1,40 @@
 'use client'
 import { useEffect, useRef, useState } from 'react';
-import Swal from 'sweetalert2'
-import Link from 'next/link'
-import { useParams, useRouter } from 'next/navigation'
-import './edit.css'
+import Swal from 'sweetalert2';
+import { useParams, useRouter } from 'next/navigation';
+import './edit.css';
 
 export default function Page() {
-  const router = useRouter()
+  const router = useRouter();
   const params = useParams();
   const id = params.id;
 
-  const [loading, setLoading] = useState(true)
-  const [firstname, setFirstname] = useState('') // คำนำหน้า
-  const [fullname, setFullname] = useState('') // ชื่อ
-  const [lastname, setLastname] = useState('') // นามสกุล
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
+  // Form state
+  const [firstname, setFirstname] = useState(''); // prefix (นาย/นาง/นางสาว)
+  const [fullname, setFullname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [items, setItems] = useState([]);
+  const [showPassword, setShowPassword] = useState(false);
 
-  // Refs for interactive effects
-  const wrapperRef = useRef(null)
-  const cardRef = useRef(null)
-  const glowRef = useRef(null)
+  // UI refs for effects
+  const cardRef = useRef(null);
+  const cursorRef = useRef(null);
 
-  useEffect(() => {
-    // เพิ่มคลาสให้ body เฉพาะหน้านี้
-    document.body.classList.add('admin-edit-users')
-    return () => document.body.classList.remove('admin-edit-users')
-  }, [])
-
+  // Fetch user information
   useEffect(() => {
     async function getUsers() {
       try {
-        const res = await fetch(`http://itdev.cmtc.ac.th:3000/api/users/${id}`);
+        const res = await fetch(`https://backend-nextjs-virid.vercel.app/api/users/${id}`);
         if (!res.ok) {
           console.error('Failed to fetch data');
-          setLoading(false)
           return;
         }
         const data = await res.json();
+        setItems(data || []);
 
+        // Initialize form state from API
         if (Array.isArray(data) && data.length > 0) {
           const user = data[0];
           setFirstname(user.firstname || '');
@@ -50,217 +45,227 @@ export default function Page() {
         }
       } catch (error) {
         console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false)
       }
     }
 
     getUsers();
   }, [id]);
 
-  // Mouse interactive: 3D tilt + cursor glow
-  const handleMouseMove = (e) => {
-    const wrapper = wrapperRef.current
-    const card = cardRef.current
-    const glow = glowRef.current
-    if (!wrapper || !card || !glow) return
+  // Cursor glow follow + card tilt interactions
+  useEffect(() => {
+    const cursor = cursorRef.current;
+    const card = cardRef.current;
+    if (!cursor || !card) return;
 
-    const rect = card.getBoundingClientRect()
-    const cx = rect.left + rect.width / 2
-    const cy = rect.top + rect.height / 2
+    const onMouseMove = (e) => {
+      const x = e.clientX - 120; // center glow (240px)
+      const y = e.clientY - 120;
+      cursor.style.opacity = '1';
+      cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    };
 
-    const dx = e.clientX - cx
-    const dy = e.clientY - cy
+    const onMouseLeaveWindow = () => {
+      cursor.style.opacity = '0';
+      cursor.style.transform = 'translate3d(-9999px, -9999px, 0)';
+    };
 
-    // Normalize to [-1, 1]
-    const nx = Math.max(-1, Math.min(1, dx / (rect.width / 2)))
-    const ny = Math.max(-1, Math.min(1, dy / (rect.height / 2)))
+    const onCardMove = (e) => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width / 2); // -1..1
+      const dy = (e.clientY - cy) / (rect.height / 2); // -1..1
+      const max = 8; // degrees
+      const tiltX = (-dy * max).toFixed(2);
+      const tiltY = (dx * max).toFixed(2);
+      card.style.setProperty('--tiltX', `${tiltX}deg`);
+      card.style.setProperty('--tiltY', `${tiltY}deg`);
+      card.style.setProperty('--tiltZ', '0');
+    };
 
-    // Apply tilt via CSS variables (used by CSS for transform)
-    const tiltX = (-ny * 6).toFixed(2) + 'deg'
-    const tiltY = (nx * 6).toFixed(2) + 'deg'
-    card.style.setProperty('--tiltX', tiltX)
-    card.style.setProperty('--tiltY', tiltY)
-    card.style.setProperty('--tiltZ', '2px')
+    const onCardLeave = () => {
+      card.style.setProperty('--tiltX', '0deg');
+      card.style.setProperty('--tiltY', '0deg');
+      card.style.setProperty('--tiltZ', '0');
+    };
 
-    // Cursor glow follows pointer
-    glow.style.transform = `translate3d(${e.clientX - 120}px, ${e.clientY - 120}px, 0)`
-    glow.style.opacity = 1
-  }
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseleave', onMouseLeaveWindow);
+    card.addEventListener('mousemove', onCardMove);
+    card.addEventListener('mouseleave', onCardLeave);
 
-  const handleMouseLeave = () => {
-    const card = cardRef.current
-    const glow = glowRef.current
-    if (card) {
-      card.style.setProperty('--tiltX', '0deg')
-      card.style.setProperty('--tiltY', '0deg')
-      card.style.setProperty('--tiltZ', '0')
-    }
-    if (glow) {
-      glow.style.opacity = 0
-    }
-  }
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseleave', onMouseLeaveWindow);
+      card.removeEventListener('mousemove', onCardMove);
+      card.removeEventListener('mouseleave', onCardLeave);
+    };
+  }, []);
 
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://itdev.cmtc.ac.th:3000/api/users', {
+      const res = await fetch('https://backend-nextjs-virid.vercel.app/api/users', {
         method: 'PUT',
         headers: {
           Accept: 'application/json',
+          // 'Content-Type': 'application/json', // keep as original API behavior
         },
         body: JSON.stringify({ id, firstname, fullname, lastname, username, password }),
-      })
+      });
       const result = await res.json();
       console.log(result);
       if (res.ok) {
         Swal.fire({
           icon: 'success',
-          title: '<h3>ปรับปรุงข้อม��ลเรียบร้อยแล้ว</h3>',
+          title: '<h3>ปรับปรุงข้อมูลเรียบร้อยแล้ว</h3>',
           showConfirmButton: false,
-          timer: 2000
+          timer: 2000,
         }).then(function () {
-          router.push('/register')
+          router.push('/admin/users');
         });
+        setFirstname('');
+        setFullname('');
+        setLastname('');
+        setUsername('');
+        setPassword('');
       } else {
         Swal.fire({
           title: 'Error!',
           text: 'เกิดข้อผิดพลาด!',
           icon: 'error',
-          confirmButtonText: 'ตกลง'
-        })
+          confirmButtonText: 'ตกลง',
+        });
       }
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'ข้อผิดพลาดเครือข่าย',
         text: 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้',
-      })
+      });
     }
-  }
+  };
+
+  const loaded = items && items.length > 0;
 
   return (
-    <div
-      ref={wrapperRef}
-      className="edit-wrapper"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* Cursor neon glow */}
-      <div ref={glowRef} className="cursor-glow" aria-hidden="true" />
+    <div className="edit-wrapper">
+      {/* Back button chip */}
+      <button
+        className="back-btn"
+        type="button"
+        onClick={() => router.push('/admin/users')}
+        aria-label="ย้อนกลับ"
+      >
+        <span className="back-arrow">←</span> กลับไปหน้ารายชื่อ
+      </button>
 
-      {/* Back chip */}
-      <Link href="/admin/users" className="back-btn" prefetch={false}>
-        <span className="back-arrow">←</span> กลับไปหน้าผู้ใช้
-      </Link>
+      {/* Cursor glow layer */}
+      <div ref={cursorRef} className="cursor-glow" aria-hidden="true" />
 
+      {/* Glass card */}
       <div ref={cardRef} className="edit-card">
-        <div className="edit-header">
-          <div className="edit-badge"><i className="bi bi-person-gear"></i></div>
-          <h2>แก้ไขข้อมูลสมาชิก</h2>
-          <div className="subtitle">เลขรายการ: #{id}</div>
+        <div className="edit-card-header">
+          <div className="edit-badge">✦</div>
+          <h1 className="edit-title">แก้ไขข้อมูลสมัครสมาชิก #{id}</h1>
+          <div className="subtitle">ธีม ชมพู • ดำ • ทอง แบบทันสมัย</div>
         </div>
 
         <form onSubmit={handleUpdateSubmit} className="edit-form">
-          {loading ? (
-            <div className="form-section"><div className="helper">กำลังโหลดข้อมูล...</div></div>
-          ) : (
-            <>
-              <div className="form-section">
-                <h3>ข้อมูลทั่วไป</h3>
-                <label>
-                  คำนำหน้า
-                  <select
-                    name="firstname"
-                    value={firstname}
-                    onChange={(e) => setFirstname(e.target.value)}
-                    required
-                  >
-                    <option value="">เลือกคำนำหน้า</option>
-                    <option value="นาย">นาย</option>
-                    <option value="นาง">นาง</option>
-                    <option value="นางสาว">นางสาว</option>
-                  </select>
-                </label>
+          <section className="form-section">
+            <h3>ข้อมูลทั่วไป</h3>
 
-                <label>
-                  ชื่อ
-                  <div className="input-wrap">
-                    <i className="bi bi-person input-icon"></i>
-                    <input
-                      type="text"
-                      className="input has-icon"
-                      placeholder="ชื่อจริง"
-                      value={fullname}
-                      onChange={(e) => setFullname(e.target.value)}
-                      required
-                    />
-                  </div>
-                </label>
-
-                <label>
-                  นามสกุล
-                  <div className="input-wrap">
-                    <i className="bi bi-person-vcard input-icon"></i>
-                    <input
-                      type="text"
-                      className="input has-icon"
-                      placeholder="นามสกุล"
-                      value={lastname}
-                      onChange={(e) => setLastname(e.target.value)}
-                      required
-                    />
-                  </div>
-                </label>
+            <label>
+              คำนำหน้า
+              <div className="input-wrap">
+                <span className="input-icon">👤</span>
+                <select
+                  className="input has-icon"
+                  name="firstname"
+                  value={firstname}
+                  onChange={(e) => setFirstname(e.target.value)}
+                  required
+                >
+                  <option value="" disabled>
+                    เลือกคำนำหน้า
+                  </option>
+                  <option value="นาย">นาย</option>
+                  <option value="นาง">นาง</option>
+                  <option value="นางสาว">นางสาว</option>
+                </select>
               </div>
+            </label>
 
-              <div className="form-section">
-                <h3>บัญชีผู้ใช้</h3>
-                <label>
-                  ชื่อผู้ใช้ (Username)
-                  <div className="input-wrap">
-                    <i className="bi bi-at input-icon"></i>
-                    <input
-                      type="text"
-                      className="input has-icon"
-                      placeholder="username"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      required
-                    />
-                  </div>
-                </label>
+            <label>
+              ชื่อ
+              <input
+                className="input"
+                type="text"
+                placeholder="ชื่อ"
+                value={fullname}
+                onChange={(e) => setFullname(e.target.value)}
+                required
+              />
+              <div className="helper">กรอกชื่อจริงของผู้ใช้</div>
+            </label>
 
-                <label>
-                  รหัสผ่าน
-                  <div className="input-wrap password-wrap">
-                    <i className="bi bi-shield-lock input-icon"></i>
-                    <input
-                      type={showPassword ? 'text' : 'password'}
-                      className="input has-icon"
-                      placeholder="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                    <button
-                      type="button"
-                      className="toggle-visibility"
-                      aria-label="toggle password visibility"
-                      onClick={() => setShowPassword(v => !v)}
-                    >
-                      <i className={showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}></i>
-                    </button>
-                    <div className="helper">อย่างน้อย 8 ตัวอักษร</div>
-                  </div>
-                </label>
+            <label>
+              นามสกุล
+              <input
+                className="input"
+                type="text"
+                placeholder="นามสกุล"
+                value={lastname}
+                onChange={(e) => setLastname(e.target.value)}
+                required
+              />
+            </label>
+          </section>
+
+          <section className="form-section">
+            <h3>ข้อมูลเข้าสู่ระบบ</h3>
+
+            <label>
+              Username
+              <div className="input-wrap">
+                <span className="input-icon">@</span>
+                <input
+                  className="input has-icon"
+                  type="text"
+                  placeholder="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
               </div>
+            </label>
 
-              <button type="submit" className="btn-save">บันทึกการเปลี่ยนแปลง</button>
-            </>
-          )}
+            <label className="password-wrap">
+              Password
+              <input
+                className="input"
+                type={showPassword ? 'text' : 'password'}
+                placeholder="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button
+                type="button"
+                className="toggle-visibility"
+                onClick={() => setShowPassword((s) => !s)}
+                aria-label={showPassword ? 'ซ่อนรหัสผ่าน' : 'แสดงรหัสผ่าน'}
+              >
+                {showPassword ? 'ซ่อน' : 'แสดง'}
+              </button>
+            </label>
+          </section>
+
+          <button type="submit" className="btn-submit" disabled={!loaded}>
+            ปรับปรุงข้อมูล
+          </button>
         </form>
       </div>
     </div>
-  )
+  );
 }

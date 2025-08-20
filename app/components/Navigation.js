@@ -6,6 +6,7 @@ import './navbar.css';
 
 export default function Navbar() {
   const router = useRouter()
+  const [tokenState, setToken] = useState("");
   const navRef = useRef(null)
   const glowRef = useRef(null)
 
@@ -18,6 +19,16 @@ export default function Navbar() {
     onScroll()
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+  useEffect(() => {
+  // อ่าน token จาก localStorage (ตอน mount)
+  const token = localStorage.getItem("token");
+  setToken(token);
+}, []);
+const handleSignOut = () => {
+  localStorage.removeItem("token");
+  setToken(null);
+  router.push("/signin");
+};
 
   const handleMouseMove = (e) => {
     const nav = navRef.current
@@ -170,6 +181,19 @@ export default function Navbar() {
             <Link href="/admin/users" className="btn btn-primary btn-login-signup">
               Admin
             </Link>
+              {tokenState ? (
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="btn btn-outline-danger"
+              >
+                <i className="bi bi-box-arrow-right"></i> SignOut
+              </button>
+            ) : (
+              <Link href="/signin" className="btn btn-outline-primary">
+                <i className="bi bi-box-arrow-in-right"></i> SignIn
+              </Link>
+            )}
           </div>
         </div>
       </div>

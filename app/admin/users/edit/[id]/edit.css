@@ -1,16 +1,16 @@
-/* Edit page — Lovely Pink Romance theme (scoped to edit page only) */
-/* Based on Cyber Neon Grid layout, recolored to pink romantic palette */
+/* Edit page — Pink/Black/Gold modern theme (scoped to edit page only) */
+/* Glassmorphism + animated aurora + gold accents */
 
 /**********************
 Design Tokens
 **********************/
 .edit-wrapper {
-  /* Colors */
-  --bg-1: #190711;          /* deep rose plum */
-  --bg-2: #2b0e1f;          /* dark romantic wine */
-  --glass: rgba(46, 12, 28, 0.58);
-  --glass-strong: rgba(46, 12, 28, 0.85);
-  --border: #6b2a4d;        /* plum border */
+  /* Core palette */
+  --bg-1: #0d0710;          /* near black with wine tint */
+  --bg-2: #1b0a17;          /* deep wine */
+  --glass: rgba(26, 10, 21, 0.55);
+  --glass-strong: rgba(32, 12, 26, 0.85);
+  --border: #612a49;        /* plum/wine border */
 
   --primary: #ff6fb5;       /* rose pink */
   --primary-30: rgba(255, 111, 181, 0.30);
@@ -20,14 +20,20 @@ Design Tokens
   --secondary-30: rgba(255, 194, 230, 0.30);
   --secondary-10: rgba(255, 194, 230, 0.10);
 
+  /* Gold accents */
+  --gold: #f5c542;          /* rich gold */
+  --gold-30: rgba(245, 197, 66, 0.30);
+  --gold-15: rgba(245, 197, 66, 0.15);
+  --gold-08: rgba(245, 197, 66, 0.08);
+
   --text: #ffe9f3;          /* soft light pink text */
-  --text-dim: #ffcfe3;      /* dimmer pink */
+  --text-dim: #ffd7ea;      /* dimmer pink */
   --danger: #ff4d6d;
 
   /* Depth & Radii */
   --radius: 18px;
   --radius-sm: 12px;
-  --shadow-outer: 0 24px 60px rgba(40, 7, 22, 0.7);
+  --shadow-outer: 0 28px 70px rgba(10, 3, 8, 0.8);
   --shadow-inner: inset 0 0 40px rgba(255, 194, 230, 0.12);
 
   /* Spacing */
@@ -52,12 +58,13 @@ Page Background
   overflow: hidden;
   color: var(--text);
   background:
-    radial-gradient(1300px 800px at -15% -20%, rgba(255, 111, 181, 0.16), transparent 60%),
-    radial-gradient(1100px 700px at 115% 120%, rgba(255, 194, 230, 0.18), transparent 60%),
+    radial-gradient(1200px 780px at -15% -20%, rgba(255, 111, 181, 0.16), transparent 60%),
+    radial-gradient(1000px 680px at 115% 120%, rgba(255, 194, 230, 0.18), transparent 60%),
+    radial-gradient(1200px 740px at 50% 120%, var(--gold-08), transparent 60%),
     linear-gradient(120deg, var(--bg-1) 0%, var(--bg-2) 100%);
 }
 
-/* Animated aurora ribbons turned pink */
+/* Animated aurora ribbons with gold glints */
 .edit-wrapper::before,
 .edit-wrapper::after {
   content: "";
@@ -68,6 +75,7 @@ Page Background
   background: conic-gradient(
     from 0deg,
     rgba(255, 111, 181, 0.22),
+    rgba(245, 197, 66, 0.14),
     rgba(255, 194, 230, 0.18),
     transparent,
     rgba(255, 111, 181, 0.22)
@@ -79,7 +87,7 @@ Page Background
 .edit-wrapper::after { animation-direction: reverse; animation-duration: 42s; opacity: 0.8; }
 
 /**********************
-Mouse-responsive cursor glow (pink)
+Mouse-responsive cursor glow (pink + gold)
 **********************/
 .cursor-glow {
   position: fixed;
@@ -91,7 +99,7 @@ Mouse-responsive cursor glow (pink)
   z-index: 1;
   opacity: 0;
   transition: opacity .25s ease, transform .05s linear;
-  background: radial-gradient(closest-side, rgba(255,111,181,0.38), rgba(255,194,230,0.30), transparent 70%);
+  background: radial-gradient(closest-side, rgba(255,111,181,0.38), rgba(245,197,66,0.22), rgba(255,194,230,0.30), transparent 70%);
   mix-blend-mode: screen;
   filter: blur(16px) saturate(1.05);
 }
@@ -103,17 +111,18 @@ Back Button (Chip)
   position: fixed; top: 18px; left: 18px; z-index: 5;
   display: inline-flex; align-items: center; gap: 8px;
   padding: 10px 14px; border-radius: 999px;
-  font-weight: 700; font-size: 0.95rem; text-decoration: none;
-  color: var(--bg-1); background: rgba(255, 194, 230, 0.85);
-  border: 2px solid var(--secondary);
-  box-shadow: 0 0 10px var(--secondary-30), inset 0 0 20px var(--secondary-10);
+  font-weight: 800; font-size: 0.95rem; text-decoration: none;
+  color: #221709; background: rgba(245, 197, 66, 0.88);
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 10px var(--gold-30), inset 0 0 20px var(--gold-15);
   backdrop-filter: blur(8px);
   transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
 }
 .edit-wrapper .back-btn:hover, .edit-wrapper .back-btn:focus {
   transform: translateY(-1px);
-  background: var(--primary); color: #3a0b20;
-  box-shadow: 0 0 18px var(--primary-30), 0 0 28px var(--secondary-10);
+  background: linear-gradient(135deg, var(--gold), #ffe79a);
+  color: #4a2a0a;
+  box-shadow: 0 0 18px var(--gold-30), 0 0 28px var(--secondary-10);
 }
 .edit-wrapper .back-arrow { font-size: 1.2rem; line-height: 1; transition: transform .2s ease; }
 .edit-wrapper .back-btn:hover .back-arrow { transform: translateX(-3px); }
@@ -123,7 +132,7 @@ Card (Glass Panel)
 **********************/
 .edit-card {
   position: relative; z-index: 2;
-  width: 100%; max-width: 820px;
+  width: 100%; max-width: 880px;
   padding: var(--space-6) var(--space-6);
   border-radius: var(--radius);
   background: linear-gradient(180deg, var(--glass-strong), var(--glass));
@@ -135,16 +144,16 @@ Card (Glass Panel)
   /* Live tilt controlled by CSS vars */
   transform: perspective(1200px) rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg)) translateZ(var(--tiltZ, 0));
 }
-.edit-card:hover { box-shadow: 0 30px 80px rgba(40, 7, 22, 0.85), var(--shadow-inner); }
+.edit-card:hover { box-shadow: 0 34px 90px rgba(7, 2, 6, 0.9), var(--shadow-inner); }
 
-/* Animated border with masking */
+/* Animated border with pink->gold gradient */
 .edit-card::before {
   content: ""; position: absolute; inset: 0; border-radius: inherit;
-  padding: 1px; background: linear-gradient(135deg, var(--primary), var(--secondary));
+  padding: 1px; background: linear-gradient(135deg, var(--primary), var(--gold));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
   animation: borderShift 8s linear infinite;
-  opacity: 0.7; pointer-events: none;
+  opacity: 0.85; pointer-events: none;
 }
 
 /* Inner soft glow */
@@ -152,41 +161,41 @@ Card (Glass Panel)
   content: ""; position: absolute; inset: 1px; border-radius: inherit;
   background:
     radial-gradient(120% 120% at 0% 0%, rgba(255,194,230,.25), transparent 40%),
-    radial-gradient(120% 120% at 100% 100%, rgba(255,111,181,.22), transparent 40%);
+    radial-gradient(120% 120% at 100% 100%, rgba(245,197,66,.22), transparent 40%);
   mix-blend-mode: screen; pointer-events: none;
 }
 
 /**********************
 Header
 **********************/
-.edit-header { text-align: center; margin-bottom: var(--space-5); position: relative; }
-.edit-header h2 {
+.edit-card-header { text-align: center; margin-bottom: var(--space-5); position: relative; }
+.edit-title {
   margin: 0 0 10px 0; font-weight: 900; font-size: 2.2rem; letter-spacing: .5px;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  background: linear-gradient(90deg, var(--primary) 0%, var(--gold) 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  text-shadow: 0 0 14px rgba(255,111,181,.25), 0 0 22px rgba(255,194,230,.25);
+  text-shadow: 0 0 14px rgba(255,111,181,.25), 0 0 22px rgba(245,197,66,.25);
   animation: glowPulse 3.2s ease-in-out infinite;
 }
-.edit-header .subtitle { color: var(--text-dim); font-weight: 600; }
+.edit-card-header .subtitle { color: var(--text-dim); font-weight: 600; }
 /* Accent bar */
-.edit-header::after {
+.edit-card-header::after {
   content: ""; position: absolute; left: 50%; transform: translateX(-50%);
   bottom: -10px; width: 120px; height: 3px; border-radius: 3px;
-  background: linear-gradient(90deg, var(--secondary), var(--primary));
-  box-shadow: 0 0 12px var(--secondary-30);
+  background: linear-gradient(90deg, var(--gold), var(--primary));
+  box-shadow: 0 0 14px var(--gold-30), 0 0 10px var(--primary-10);
 }
 
 /**********************
 Form Layout & Typography
 **********************/
-.edit-form { display: flex; flex-direction: column; gap: var(--space-4); }
+.edit-form { display: flex; flex-direction: column; gap: var(--space-5); }
 
 /* Each section behaves like a mini panel with grid inside */
 .form-section {
   border-radius: var(--radius-sm);
   border: 1px solid rgba(255, 111, 181, 0.45);
-  background: linear-gradient(180deg, rgba(255,111,181,0.06), rgba(255,111,181,0.02));
-  box-shadow: 0 0 12px rgba(255,111,181,0.15), inset 0 0 18px rgba(255,111,181,0.1);
+  background: linear-gradient(180deg, rgba(255,111,181,0.06), rgba(245,197,66,0.05));
+  box-shadow: 0 0 12px rgba(255,111,181,0.12), 0 0 14px rgba(245,197,66,0.12), inset 0 0 18px rgba(255,111,181,0.1);
   padding: var(--space-4);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -195,7 +204,7 @@ Form Layout & Typography
 .form-section h3 {
   grid-column: 1 / -1; margin: 0 0 var(--space-2) 0;
   color: var(--secondary); font-weight: 800; font-size: 1.15rem;
-  text-shadow: 0 0 8px rgba(255,194,230,0.6);
+  text-shadow: 0 0 8px rgba(255,194,230,0.6), 0 0 8px var(--gold-15);
 }
 
 /* Labels */
@@ -207,7 +216,7 @@ Form Layout & Typography
 .edit-wrapper input[type="date"],
 .edit-wrapper select,
 .edit-wrapper textarea {
-  background: #2b0f20;
+  background: #220d1c;
   border: 1.5px solid rgba(255, 143, 195, 0.60);
   border-radius: 12px;
   padding: 12px 14px;
@@ -221,8 +230,8 @@ Form Layout & Typography
 .edit-wrapper input[type="date"]:focus,
 .edit-wrapper select:focus,
 .edit-wrapper textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 16px rgba(255,111,181,0.6), inset 0 0 18px rgba(255,111,181,0.35);
+  border-color: var(--gold);
+  box-shadow: 0 0 18px rgba(245,197,66,0.45), 0 0 16px rgba(255,111,181,0.35), inset 0 0 18px rgba(255,111,181,0.35);
 }
 
 /* Input icon wrapper and password toggle */
@@ -230,8 +239,8 @@ Form Layout & Typography
 .input.has-icon { padding-left: 38px !important; }
 .input-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--secondary); pointer-events: none; }
 .password-wrap { position: relative; }
-.toggle-visibility { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: rgba(255,194,230,0.18); border: 1px solid rgba(255,194,230,0.45); color: var(--text); cursor: pointer; padding: 6px; border-radius: 8px; }
-.toggle-visibility:hover { background: rgba(255,111,181,0.18); border-color: var(--primary); }
+.toggle-visibility { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: rgba(245,197,66,0.18); border: 1px solid var(--gold-30); color: var(--text); cursor: pointer; padding: 6px; border-radius: 8px; }
+.toggle-visibility:hover { background: rgba(245,197,66,0.28); border-color: var(--gold); }
 .helper { font-size: 12px; color: var(--text-dim); margin-top: 6px; }
 
 /* Radio group as segmented control */
@@ -239,16 +248,16 @@ Form Layout & Typography
 .radio-group label {
   display: inline-flex; align-items: center; gap: 8px; cursor: pointer; user-select: none;
   padding: 8px 12px; border-radius: 999px;
-  background: rgba(255,194,230,0.16); color: var(--text);
-  border: 1px solid rgba(255,194,230,0.35);
+  background: rgba(245,197,66,0.10); color: var(--text);
+  border: 1px solid rgba(245,197,66,0.35);
   transition: background .2s ease, box-shadow .2s ease, border-color .2s ease, transform .05s ease;
 }
 .radio-group input[type="radio"] { accent-color: var(--primary); }
 /* highlight selected */
 .radio-group label:has(input:checked) {
-  background: linear-gradient(135deg, rgba(255,111,181,0.25), rgba(255,194,230,0.25));
-  border-color: var(--primary);
-  box-shadow: 0 0 14px rgba(255,111,181,0.35);
+  background: linear-gradient(135deg, rgba(255,111,181,0.22), rgba(245,197,66,0.22));
+  border-color: var(--gold);
+  box-shadow: 0 0 14px rgba(245,197,66,0.35);
 }
 .radio-group label:hover { transform: translateY(-1px); }
 
@@ -260,20 +269,20 @@ Submit Button
   position: relative; overflow: hidden; width: 100%;
   border: none; border-radius: var(--radius-sm);
   padding: 14px 0; font-weight: 900; font-size: 1.05rem;
-  color: #3a0b20; cursor: pointer; user-select: none;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  box-shadow: 0 0 14px var(--primary-30), 0 0 22px var(--secondary-10), inset 0 0 24px rgba(255,111,181,0.55);
+  color: #2a1606; cursor: pointer; user-select: none;
+  background: linear-gradient(135deg, var(--primary), var(--gold));
+  box-shadow: 0 0 16px var(--primary-30), 0 0 24px var(--gold-15), inset 0 0 24px rgba(255,111,181,0.55);
   transition: transform .18s ease, box-shadow .18s ease;
 }
 .btn-save:hover,
-.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 0 22px var(--primary-30), 0 0 34px var(--secondary-10), inset 0 0 30px rgba(255,111,181,0.8); }
+.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 0 24px var(--primary-30), 0 0 36px var(--gold-30), inset 0 0 30px rgba(255,111,181,0.8); }
 .btn-save:active,
 .btn-submit:active { transform: translateY(0px) scale(.995); }
 .btn-save:disabled,
 .btn-submit:disabled { background: #5e3248; color: #ffd9eb; opacity: .6; box-shadow: none; cursor: not-allowed; }
 /* Shine sweep */
 .btn-save::after,
-.btn-submit::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.5) 35%, transparent 65%); transform: translateX(-120%) skewX(-15deg); transition: transform .6s ease; }
+.btn-submit::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.45) 35%, transparent 65%); transform: translateX(-120%) skewX(-15deg); transition: transform .6s ease; }
 .btn-save:hover::after,
 .btn-submit:hover::after { transform: translateX(120%) skewX(-15deg); }
 
@@ -285,20 +294,14 @@ Focus visible utility
 .edit-wrapper input:focus-visible,
 .edit-wrapper select:focus-visible,
 .edit-wrapper textarea:focus-visible {
-  outline: 2px solid var(--secondary); outline-offset: 2px;
+  outline: 2px solid var(--gold); outline-offset: 2px;
 }
 
 /**********************
 Compat: existing markup helpers
 **********************/
 .edit-card-header { text-align: center; margin-bottom: var(--space-5); position: relative; }
-.edit-title {
-  margin: 0 0 10px 0; font-weight: 900; font-size: 2rem; letter-spacing: .4px;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  text-shadow: 0 0 14px rgba(255,111,181,.25), 0 0 22px rgba(255,194,230,.25);
-}
-.edit-badge { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; color: var(--primary); background: rgba(255,194,230,0.18); border: 1px solid var(--border); box-shadow: inset 0 0 10px rgba(255,194,230,0.25); margin: 0 auto var(--space-2) auto; }
+.edit-badge { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; color: var(--gold); background: rgba(245,197,66,0.12); border: 1px solid var(--border); box-shadow: inset 0 0 10px rgba(245,197,66,0.20); margin: 0 auto var(--space-2) auto; }
 
 /**********************
 Animations
@@ -307,11 +310,17 @@ Animations
 
 @keyframes borderShift {
   0% { filter: hue-rotate(0deg) brightness(1); }
-  50% { filter: hue-rotate(180deg) brightness(1.05); }
+  50% { filter: hue-rotate(180deg) brightness(1.06); }
   100% { filter: hue-rotate(360deg) brightness(1); }
 }
 
 @keyframes glowPulse {
-  0%, 100% { filter: drop-shadow(0 0 8px rgba(255,111,181,0.35)) drop-shadow(0 0 12px rgba(255,194,230,0.35)); opacity: 1; }
-  50% { filter: drop-shadow(0 0 16px rgba(255,111,181,0.55)) drop-shadow(0 0 22px rgba(255,194,230,0.55)); opacity: .95; }
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(255,111,181,0.35)) drop-shadow(0 0 12px rgba(245,197,66,0.35)); opacity: 1; }
+  50% { filter: drop-shadow(0 0 16px rgba(255,111,181,0.55)) drop-shadow(0 0 22px rgba(245,197,66,0.55)); opacity: .96; }
+}
+.swal2-popup {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
 }
