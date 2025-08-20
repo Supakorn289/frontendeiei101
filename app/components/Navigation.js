@@ -27,7 +27,7 @@ export default function Navbar() {
 const handleSignOut = () => {
   localStorage.removeItem("token");
   setToken(null);
-  router.push("/signin");
+  router.push("/Signup");
 };
 
   const handleMouseMove = (e) => {
@@ -172,9 +172,9 @@ const handleSignOut = () => {
 
           {/* ปุ่ม Login / Signup */}
           <div className="login-signup-group">
-            <Link href="/Login" className="btn btn-primary btn-login-signup">
+          {/*<Link href="/Login" className="btn btn-primary btn-login-signup">
               เข้าสู่ระบบ
-            </Link>
+            </Link>*/}
             <Link href="/Signup" className="btn btn-primary btn-login-signup">
               สมัครสมาชิก
             </Link>
@@ -187,11 +187,11 @@ const handleSignOut = () => {
                 onClick={handleSignOut}
                 className="btn btn-outline-danger"
               >
-                <i className="bi bi-box-arrow-right"></i> SignOut
+                <i className="bi bi-box-arrow-right"></i> Logout
               </button>
             ) : (
-              <Link href="/signin" className="btn btn-outline-primary">
-                <i className="bi bi-box-arrow-in-right"></i> SignIn
+              <Link href="/Login" className="btn btn-outline-primary">
+                <i className="bi bi-box-arrow-in-right"></i> Login
               </Link>
             )}
           </div>
