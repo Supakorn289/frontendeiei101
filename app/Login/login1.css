@@ -9,7 +9,7 @@ body, html {
 }
 
 .signup-container {
-  background-image: url('/sunset-window.jpg'); /* 👈 เปลี่ยนชื่อให้ตรงกับภาพที่คุณมีใน public folder */
+  background-image: url('/ปกlogin.jpg'); /* 👈 เปลี่ยนชื่อให้ตรงกับภาพที่คุณมีใน public folder */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
