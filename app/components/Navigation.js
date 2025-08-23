@@ -178,9 +178,9 @@ const handleSignOut = () => {
             <Link href="/Signup" className="btn btn-primary btn-login-signup">
               สมัครสมาชิก
             </Link>
-            <Link href="/admin/users" className="btn btn-primary btn-login-signup">
+            {/*<Link href="/admin/users" className="btn btn-primary btn-login-signup">
               Admin
-            </Link>
+            </Link>*/}
               {tokenState ? (
               <button
                 type="button"
