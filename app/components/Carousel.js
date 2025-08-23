@@ -91,8 +91,8 @@ export default function Carousel() {
             alt="ภาพที่ 1" width={1920} height={690}
           />
           <div className="carousel-caption text-start">
-            <h5 className="caption-title">Love in the Air</h5>
-            <p className="caption-sub">ละอองความรักสีชมพู ทาบทอด้วยประกายสีทอง</p>
+            <h5 className="caption-title">เทคนิค</h5>
+            <p className="caption-sub">เรียนรู้อย่างมีประสิทธิภาพ ทำงานอย่างชาญฉลาด</p>
           </div>
         </div>
         <div className="carousel-item">
@@ -102,8 +102,8 @@ export default function Carousel() {
             alt="ภาพที่ 2" width={1920} height={690}
           />
           <div className="carousel-caption">
-            <h5 className="caption-title">Golden Moments</h5>
-            <p className="caption-sub">ชมพู ดำ ทอง ผสานเป็นจังหวะของหัวใจ</p>
+            <h5 className="caption-title">เทคโนโลยี</h5>
+            <p className="caption-sub">เปลี่ยนโลก เพื่อการศึกษา ขับเคลื่อนอนาคต</p>
           </div>
         </div>
         <div className="carousel-item">
@@ -113,8 +113,8 @@ export default function Carousel() {
             alt="ภาพที่ 3" width={1920} height={690}
           />
           <div className="carousel-caption text-end">
-            <h5 className="caption-title">Forever Yours</h5>
-            <p className="caption-sub">ทุกสไลด์บอกเล่าเรื่องราวความรักอันนุ่มนวล</p>
+            <h5 className="caption-title">สารสนเทศ</h5>
+            <p className="caption-sub">เพื่อการตัดสินใจ พลังความรู้ อย่างมีระบบ</p>
           </div>
         </div>
       </div>
