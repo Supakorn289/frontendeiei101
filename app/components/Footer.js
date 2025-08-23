@@ -50,7 +50,7 @@ export default function Footer() {
           <a
             data-mdb-ripple-init=""
             className="btn text-white btn-floating m-1 social-btn fb"
-            href="#!"
+            href="https://www.facebook.com/subhakorn.prammano"
             role="button"
             aria-label="Facebook"
           >
@@ -60,7 +60,7 @@ export default function Footer() {
           <a
             data-mdb-ripple-init=""
             className="btn text-white btn-floating m-1 social-btn tw"
-            href="#!"
+            href="https://x.com/"
             role="button"
             aria-label="Twitter"
           >
@@ -70,7 +70,7 @@ export default function Footer() {
           <a
             data-mdb-ripple-init=""
             className="btn text-white btn-floating m-1 social-btn gg"
-            href="#!"
+            href="https://www.google.com/"
             role="button"
             aria-label="Google"
           >
@@ -80,7 +80,7 @@ export default function Footer() {
           <a
             data-mdb-ripple-init=""
             className="btn text-white btn-floating m-1 social-btn ig"
-            href="#!"
+            href="https://www.instagram.com/supxkorn._.go"
             role="button"
             aria-label="Instagram"
           >
@@ -90,7 +90,7 @@ export default function Footer() {
           <a
             data-mdb-ripple-init=""
             className="btn text-white btn-floating m-1 social-btn ln"
-            href="#!"
+            href="https://th.linkedin.com/"
             role="button"
             aria-label="LinkedIn"
           >
@@ -100,7 +100,7 @@ export default function Footer() {
           <a
             data-mdb-ripple-init=""
             className="btn text-white btn-floating m-1 social-btn gh"
-            href="#!"
+            href="https://github.com/"
             role="button"
             aria-label="GitHub"
           >
