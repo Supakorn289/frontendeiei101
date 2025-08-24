@@ -64,6 +64,37 @@ Page Background
     linear-gradient(120deg, var(--bg-1) 0%, var(--bg-2) 100%);
 }
 
+/* Cap content and allow vertical scroll on small screens */
+.edit-card { max-width: 880px; }
+
+@media (max-width: 992px) {
+  .edit-card { max-width: 720px; }
+}
+
+@media (max-width: 768px) {
+  .edit-wrapper { padding: var(--space-5) var(--space-4); }
+  .edit-card { padding: var(--space-5); border-radius: 14px; }
+  .edit-title { font-size: 1.8rem; }
+  .form-section { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 576px) {
+  .edit-wrapper { padding: var(--space-4) var(--space-3); }
+  .edit-card { padding: var(--space-4); border-radius: 12px; }
+  .edit-title { font-size: 1.55rem; }
+  .card-header .subtitle { font-size: 0.95rem; }
+  .form-section { gap: var(--space-3); }
+  .btn-submit { font-size: 1rem; padding: 12px 0; }
+  /* Back button avoid navbar overlap */
+  .edit-wrapper .back-btn { top: 70px; left: 12px; padding: 8px 12px; font-size: 0.9rem; }
+}
+
+/* Disable heavy cursor effect on touch devices */
+@media (hover: none), (pointer: coarse) {
+  .cursor-glow { display: none; }
+  .edit-card { transform: none !important; }
+}
+
 /* Animated aurora ribbons with gold glints */
 .edit-wrapper::before,
 .edit-wrapper::after {

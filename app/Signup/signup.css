@@ -13,10 +13,16 @@ body, html {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
+  /* ใช้ min-height ที่เสถียรกว่า 100vh บนมือถือ และรองรับ safe-area */
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
+  padding-top: calc(20px + env(safe-area-inset-top));
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  box-sizing: border-box;
 }
 
 /* กล่อง Signup แบบ Glassmorphism */
@@ -110,14 +116,14 @@ body, html {
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .signup-form {
-    padding: 25px;
-    max-width: 90%;
+    padding: 24px;
+    max-width: 95%;
   }
 
   .signup-title {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   .form-row {
@@ -126,6 +132,17 @@ body, html {
 
   .btn-submit {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-form {
+    padding: 22px;
+    max-width: 94%;
+  }
+
+  .signup-title {
+    font-size: 1.5rem;
   }
 }
 .swal2-popup {

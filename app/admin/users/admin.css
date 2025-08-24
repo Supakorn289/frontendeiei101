@@ -29,7 +29,12 @@ body {
   margin-bottom: 15px;
 }
 
+.card-body {
+  padding: 0; /* allow table to use full width */
+}
+
 .table {
+  width: 100%;
   background-color: transparent;
   color: #fff;
 }
@@ -41,7 +46,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 12px;
   vertical-align: middle;
-    color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
 
 .table th {
@@ -60,4 +65,73 @@ body {
 .btn-danger {
   background-color: #dc3545;
   color: white;
+}
+
+/* ==========================
+   Responsive adjustments
+   ========================== */
+@media (max-width: 992px) {
+  .container { max-width: 100%; }
+  .card { border-radius: 12px; }
+}
+
+@media (max-width: 768px) {
+  body {
+    /* fixed backgrounds can cause jank on mobile */
+    background-attachment: scroll;
+  }
+  .container {
+    max-width: 100%;
+    padding: 12px;
+  }
+  .card {
+    padding: 14px;
+    border-radius: 12px;
+  }
+  .card-header {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  /* Make table horizontally scrollable without changing markup */
+  .row {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table {
+    min-width: 640px; /* allow horizontal scroll on small screens */
+    font-size: 0.95rem;
+  }
+  .table th,
+  .table td {
+    padding: 10px;
+    white-space: nowrap;
+  }
+  .btn {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+  .card {
+    padding: 12px;
+  }
+  .card-header {
+    font-size: 18px;
+  }
+  .table {
+    min-width: 520px; /* narrower breakpoint width */
+    font-size: 0.88rem;
+  }
+  .table th,
+  .table td {
+    padding: 8px;
+  }
+  .btn {
+    font-size: 0.8rem;
+    padding: 6px 8px;
+  }
 }
